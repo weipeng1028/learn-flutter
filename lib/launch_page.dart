@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 /// 如何打开第三方应用？
-class PluginUse extends StatefulWidget {
-  PluginUse({Key key, this.title}) : super(key: key);
+class LaunchPage extends StatefulWidget {
+  LaunchPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _PluginUse createState() => _PluginUse();
+  _LaunchPage createState() => _LaunchPage();
 }
 
-class _PluginUse extends State<PluginUse> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class _LaunchPage extends State<LaunchPage> {
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -52,15 +39,17 @@ class _PluginUse extends State<PluginUse> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(onPressed: () => _launchURL())
+            RaisedButton(
+              onPressed: () => _launchURL(),
+              child: Text('点我外部连接'),
+            ),
+            RaisedButton(
+              onPressed: () => _openMap(),
+              child: Text('点我去地图'),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -70,5 +59,24 @@ _launchURL() async {
     await launch(url);
   } else {
     throw 'Could not launch $url';
+  }
+}
+_openMap() async {
+  const url = 'geo:52.32,4.917'; // APP提供者提供的schema
+  // android
+  if (await canLaunch(url)) {
+    try {
+      await launch(url);
+    } catch (e) {
+      throw 'Could not lanuch $url';
+    }
+  } else {
+    // iOS 13
+    const url = 'http://maps.apple.com/?ll=116.322594,39.838373';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not lanuch $url';
+    }
   }
 }
