@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tt/PhotoApp.dart';
+import 'package:flutter_tt/animation/logo_app.dart';
+import 'package:flutter_tt/animation/transitions.dart';
 import 'package:flutter_tt/app_fifecycle.dart';
 import 'package:flutter_tt/flutter_layout_page.dart';
 import 'package:flutter_tt/flutter_widget_lifecycle.dart';
@@ -10,7 +12,9 @@ import 'package:flutter_tt/plugin_use.dart';
 import 'package:flutter_tt/res_page.dart';
 import 'package:flutter_tt/stateFullGroup.dart';
 
-void main() => runApp(DynamicTheme());
+void main() => runApp(MaterialApp(
+  home: HeroAnimation(),
+));
 class DynamicTheme extends StatefulWidget {
   @override
   _DynamicThemeState createState() => _DynamicThemeState();
@@ -60,6 +64,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
         'widgetLifecycle': (BuildContext context) => WidgetLifecycle(),
         'appLifecycle': (BuildContext context) => AppLifecycle(),
         'photoApp': (BuildContext context) => PhotoApp(),
+        'logoApp': (BuildContext context) => LogoApp(),
+        'heroAnimation': (BuildContext context) => HeroAnimation(),
       },
     );
   }
@@ -94,6 +100,8 @@ class _RouteNavigatorState extends State<RouteNavigator> {
           _item('flutter页面生命周期', WidgetLifecycle(), 'widgetLifecycle'),
           _item('如何获取Flutter应用生命周期', AppLifecycle(), 'appLifecycle'),
           _item('拍照测试', PhotoApp(), 'photoApp'),
+          _item('logoApp', LogoApp(), 'logoApp'),
+          _item('hero动画', HeroAnimation(), 'heroAnimation'),
         ],
       ),
     );

@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 // 如何导入和使用Flutter的资源文件？
 class ResPage extends StatefulWidget {
@@ -38,18 +43,35 @@ class _ResPage extends State<ResPage> {
         ),
       ),
       body: Center(
+        child: CachedNetworkImage(
+          placeholder: (context,url) => CircularProgressIndicator(),
+          imageUrl: 'https://www.devio.org/img/avatar.png',
+        ),
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image(
-              width: 100,
-              height: 100,
-              image: AssetImage('images/test.jpg'),
-            )
-          ],
-        ),
+        // child: Column(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: <Widget>[
+        //     // Image(
+        //     //   width: 100,
+        //     //   height: 100,
+        //     //   image: AssetImage('images/test.jpg'),
+        //     // ),
+        //     Stack(
+        //       children: <Widget>[
+        //         // Center(
+        //         //   child: CircularProgressIndicator(), // 圆形进度指示器
+        //         // ),
+        //         // Center(
+        //         //   child: FadeInImage.memoryNetwork(
+        //         //     placeholder: kTransparentImage,
+        //         //     image: 'https://www.devio.org/img/avatar.png',
+        //         //   ),
+        //         // ),
+        //       ],
+        //     )
+        //   ],
+        // ),
       ),
     );
   }

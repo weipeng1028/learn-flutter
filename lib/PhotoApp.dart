@@ -95,7 +95,9 @@ class _PhotoApp extends State<PhotoApp> {
             right: 5,
             child: GestureDetector(
               onTap: () {
-                _images.remove(file);
+                setState(() {
+                  _images.remove(file);
+                });
               },
               child: ClipOval(
                 // 圆角删除按钮
