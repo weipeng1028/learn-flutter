@@ -20,6 +20,7 @@ class _PhotoApp extends State<PhotoApp> {
     Navigator.pop(context);
     // isTakePhoto为true拍照，false相册选择
     var image = await ImagePicker.pickImage(source: isTakePhoto?ImageSource.camera:ImageSource.gallery);
+    print(image);
     setState(() {
       if (image != null) {
         _images.add(image);

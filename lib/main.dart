@@ -10,10 +10,11 @@ import 'package:flutter_tt/launch_page.dart';
 import 'package:flutter_tt/less_group.dart';
 import 'package:flutter_tt/plugin_use.dart';
 import 'package:flutter_tt/res_page.dart';
+import 'package:flutter_tt/router.dart';
 import 'package:flutter_tt/stateFullGroup.dart';
 
 void main() => runApp(MaterialApp(
-  home: HeroAnimation(),
+  home: DynamicTheme(),
 ));
 class DynamicTheme extends StatefulWidget {
   @override
@@ -66,6 +67,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
         'photoApp': (BuildContext context) => PhotoApp(),
         'logoApp': (BuildContext context) => LogoApp(),
         'heroAnimation': (BuildContext context) => HeroAnimation(),
+        'routerPage': (BuildContext context) => RoutePage()
       },
     );
   }
@@ -102,6 +104,7 @@ class _RouteNavigatorState extends State<RouteNavigator> {
           _item('拍照测试', PhotoApp(), 'photoApp'),
           _item('logoApp', LogoApp(), 'logoApp'),
           _item('hero动画', HeroAnimation(), 'heroAnimation'),
+          _item('路由跳转', RoutePage(), 'routerPage')
         ],
       ),
     );
